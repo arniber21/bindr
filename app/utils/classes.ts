@@ -1,0 +1,4 @@
+export const formControlClasses = "border-2 border-slate-300 text-sm rounded-full py-3 px-5 hover:bg-slate-200 hover:border-slate-500 selection:bg-slate-200 selection:border-slate-500";
+export const textAreaClasses = "border-2 border-slate-300 text-sm rounded-xl py-3 px-5 hover:bg-slate-200 hover:border-slate-500 selection:bg-slate-200 selection:border-slate-500";
+export const primaryButtonClasses = "text-sm rounded-full py-3 px-5 bg-green-400 text-white border-2 hover:text-black hover:border-slate-500";
+export const secondaryButtonClasses = "text-sm rounded-full py-3 px-5 bg-purple-400 text-white border-2 hover:text-black hover:border-slate-500";

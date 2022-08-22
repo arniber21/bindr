@@ -1,0 +1,10 @@
+node_modules
+
+/.postgresql
+/.cache
+/build
+/public/build
+.env
+
+# Project exclude paths
+/public/
