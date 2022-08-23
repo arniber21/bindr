@@ -32,7 +32,7 @@ type AssignmentHeaderProps = {
 }
 export const AssignmentHeader: React.FC<AssignmentHeaderProps> = ({ name, completed, dueDate }) => {
 	return (
-		<h3 className="text-md">
+		<h3>
 			{name}
 			<span className='text-blue-600'> Due { dueDate.toLocaleDateString()} </span>
 			{completed ? <span className="text-green-600"> Completed </span> :
@@ -53,13 +53,11 @@ const AssignmentListCard: React.FC<AssignmentListCardTypes> = ({ id, name, compl
 	return (
 		<Link to={id.toString()}>
 			<div className="rounded-xl px-5 py-3 mb-5 border-2 hover:border-slate-500 hover:bg-slate-100">
-				<h4 className="text-md">
-					<AssignmentHeader
-						name={name}
-						completed={completed}
-						dueDate={dueDate}
-					/>
-				</h4>
+				<AssignmentHeader
+					name={name}
+					completed={completed}
+					dueDate={dueDate}
+				/>
 			</div>
 		</Link>
 	);
@@ -79,11 +77,6 @@ export default function AssignmentRootRoute() {
 	const assignmentOutletClasses = assignments.length != 0 ? '' : 'col-span-2';
 	return (
 		<div>
-			<div className="mb-5">
-				<Link to="new">
-					<button className={secondaryButtonClasses}>Add Assignment</button>
-				</Link>
-			</div>
 			<div className="grid grid-cols-2 gap-10">
 				<div className={assignmentListClasses}>
 					{data.assignments.sort(sortAssignmentFunction).map(assignment => (
@@ -101,6 +94,9 @@ export default function AssignmentRootRoute() {
 					<Outlet />
 				</div>
 			</div>
+			<Link to="new">
+				<button className={secondaryButtonClasses}>Add Assignment</button>
+			</Link>
 		</div>
 	);
 }

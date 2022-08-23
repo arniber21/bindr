@@ -12,6 +12,8 @@ import styles from "./styles/app.css";
 import { json, LoaderFunction } from "@remix-run/node";
 import { getUser } from "~/utils/session.server";
 
+const navClassName = 'p-2 text-sm mx-3 font-medium text-black hover:text-blue-700';
+
 export const meta: MetaFunction = () => ({
 	charset: "utf-8",
 	title: "Bindr",
@@ -27,8 +29,15 @@ export function links() {
 
 const Navbar: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 	return (
-		<div className="p-3 flex flex-row justify-center">
-			{children}
+		<div className="flex flex-row justify-between items-center border-b">
+				<div className="p2 mx-10 text-lg font-medium text-black hover:text-cyan-500">
+					<Link to="/">
+						Bindr
+					</Link>
+				</div>
+			<div className="p-3 flex flex-row justify-end">
+				{children}
+			</div>
 		</div>
 	);
 };
@@ -37,7 +46,7 @@ const NavbarElement: React.FC<{ children: React.ReactNode, href: string }> = ({ 
 	return (
 		<Link prefetch='intent' to={href}>
 			<div
-				className="border-2 border-slate-300 rounded-full py-3 px-5 mx-3 hover:bg-slate-100 hover:border-slate-500">
+				className={navClassName}>
 				{children}
 			</div>
 		</Link>
@@ -102,8 +111,7 @@ export default function App() {
 				Sign Up
 			</NavbarElement>}
 			{authed &&
-				<form action="/auth/signout" method="post"
-					  className="border-2 border-slate-300 rounded-full py-3 px-5 mx-3 hover:bg-slate-100 hover:border-slate-500">
+				<form action="/auth/signout" method="post" className={navClassName}>
 					<button type="submit" className="button">
 						Sign Out
 					</button>

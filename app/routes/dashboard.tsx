@@ -1,6 +1,6 @@
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { ErrorBoundaryComponent, LoaderFunction } from "@remix-run/node";
-import { primaryButtonClasses } from "~/utils/classes";
+import { primaryButtonClasses, secondaryButtonClasses } from "~/utils/classes";
 
 export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
 	return (
@@ -14,7 +14,14 @@ export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
 export default function DashboardIndex() {
 	return (
 		<div className=''>
-			<h1 className='text-xl font-bold m-3 mb-5'>Dashboard</h1>
+			<div className="flex flex-row justify-between">
+				<h1 className='text-xl font-bold m-3 mb-3'>Dashboard</h1>
+				<div className="mx-3 mb-3">
+					<Link to='new'>
+						<button className={ secondaryButtonClasses }>Add Course</button>
+					</Link>
+				</div>
+			</div>
 			<Outlet />
 		</div>
 	)

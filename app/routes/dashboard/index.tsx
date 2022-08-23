@@ -1,6 +1,7 @@
 import { json, LoaderFunction } from "@remix-run/node";
 import { getUser } from "~/utils/session.server";
 import { Link, useLoaderData } from "@remix-run/react";
+import { primaryButtonClasses } from "~/utils/classes";
 
 type LoaderData = {
 	user?: {
@@ -12,6 +13,7 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ request }) => {
 	const user = await getUser(request);
+	if(!user) throw new Error("Authentication failed, try signing out and signing back in");
 	return json({ user });
 }
 
@@ -19,9 +21,8 @@ export default function DashboardIndex() {
 	const data = useLoaderData<LoaderData>();
 	return (
 		<div className='p-3'>
-			<h1 className='text-xl'>Welcome to Bindr</h1>
 			<Link to='courses'>
-				<p>Go To Courses</p>
+				<button className={primaryButtonClasses}>Go To Courses</button>
 			</Link>
 		</div>
 	)
