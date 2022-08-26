@@ -1,6 +1,6 @@
 import { json, LoaderFunction } from "@remix-run/node";
 import { getAssignments } from "~/utils/db.server";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 
 const calendarGridElementClasses = "border-2 p-5 font-medium";
 
@@ -76,8 +76,10 @@ export default function CalendarPage() {
 						{day > 0 ? day <= daysInCurrentMonth ? day : day - 31 : day + 31}
 						{day > 0 && day <= 31 && data.assignments.filter(assignment => new Date(assignment.dueDate).getDate() === day).map(assignment => (
 							<div key={assignment.id}>
-								<span className="text-red-600">{assignment.name}</span>
-								<br />
+								<Link to={`../assignments/${assignment.id}`}>
+									<span className="text-red-600">{assignment.name}</span>
+									<br />
+								</Link>
 							</div>
 						))}
 					</div>,
