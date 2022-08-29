@@ -1,6 +1,6 @@
 import { json, LoaderFunction } from "@remix-run/node";
-import { getAssignments } from "~/utils/db.server";
 import { Link, useLoaderData } from "@remix-run/react";
+import { getAssignments } from "~/utils/assignments.server";
 
 const calendarGridElementClasses = "border-2 p-5 font-medium";
 

@@ -1,7 +1,7 @@
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { json, LoaderFunction } from "@remix-run/node";
-import { getAssignments } from "~/utils/db.server";
 import { secondaryButtonClasses } from "~/utils/classes";
+import { getAssignments } from "~/utils/assignments.server";
 
 type Assignment = {
 	id: number,

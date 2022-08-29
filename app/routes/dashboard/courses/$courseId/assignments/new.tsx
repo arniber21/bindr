@@ -1,6 +1,6 @@
 import { formControlClasses, secondaryButtonClasses, textAreaClasses } from "~/utils/classes";
 import { ActionFunction, redirect } from "@remix-run/node";
-import { createAssignment } from "~/utils/db.server";
+import { createAssignment } from "~/utils/assignments.server";
 
 export const action: ActionFunction = async ({ request, params }) => {
 	const courseId = params.courseId;
@@ -28,7 +28,7 @@ export default function NewAssignmentPage() {
 					Due Date: <input placeholder="Due Date" type="date" name="dueDate" className={formControlClasses} />
 				</div>
 				<div className="m-3">
-					<button type="submit" className={secondaryButtonClasses}>Add Assignment</button>
+					<button type="submit" className={secondaryButtonClasses}>Create</button>
 				</div>
 			</form>
 		</div>

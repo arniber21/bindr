@@ -1,5 +1,4 @@
 import { ActionFunction, ErrorBoundaryComponent, json, LoaderFunction, redirect } from "@remix-run/node";
-import { getAssignment, setAssignmentAsComplete } from "~/utils/db.server";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { AssignmentHeader } from "~/routes/dashboard/courses/$courseId/assignments";
 import {
@@ -8,6 +7,7 @@ import {
 	secondaryButtonClasses,
 	secondaryGradientButtonClasses,
 } from "~/utils/classes";
+import { getAssignment, setAssignmentAsComplete } from "~/utils/assignments.server";
 
 export const action: ActionFunction = async ({ params, request }) => {
 	const assignmentId = params.assignmentId;

@@ -1,7 +1,7 @@
 import { formControlClasses, primaryButtonClasses, secondaryButtonClasses, textAreaClasses } from "~/utils/classes";
 import { ActionFunction, json, LoaderFunction, redirect } from "@remix-run/node";
-import { getAssignment, updateAssignment } from "~/utils/db.server";
 import { useLoaderData } from "@remix-run/react";
+import { getAssignment, updateAssignment } from "~/utils/assignments.server";
 
 export const action: ActionFunction = async ({ params, request }) => {
 	const formData = await request.formData();

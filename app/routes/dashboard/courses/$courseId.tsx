@@ -1,16 +1,16 @@
 import { useParams } from "react-router";
 import { ErrorBoundaryComponent, json, LoaderFunction } from "@remix-run/node";
 import { getUser } from "~/utils/session.server";
-import { getCourse, getCourses } from "~/utils/db.server";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { primaryButtonClasses, secondaryButtonClasses } from "~/utils/classes";
+import { getCourse, getCourses } from "~/utils/assignments.server";
 
 export const loader: LoaderFunction = async ({ request, params }) => {
 	const user = await getUser(request);
 	const courseId = params.courseId;
 	if(!courseId) throw new Error("Something horribly wrong happened");
 	if(!user) throw new Error("Could not find user");
-	const course = await getCourse(user.id, Number.parseInt(courseId));
+	const course = await getCourse(Number.parseInt(courseId));
 	if(!course) throw new Error("Course not found");
 	return json({ course });
 }

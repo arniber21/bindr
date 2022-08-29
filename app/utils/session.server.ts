@@ -2,6 +2,12 @@ import { compare, genSalt, hash } from "bcryptjs";
 import { db } from "~/utils/db.server";
 import { createCookieSessionStorage, redirect } from "@remix-run/node";
 
+/**
+ * Create a user in the database
+ * @param email the email
+ * @param password the unhashed
+ * @param name the name
+ */
 export const createUser = async (email: string, password: string, name: string) => {
 	// Hash the password
 	const salt = await genSalt(10);
@@ -12,6 +18,11 @@ export const createUser = async (email: string, password: string, name: string) 
 	return user;
 };
 
+/**
+ * Sign in. Returns null if no user found or if password doesn't match
+ * @param email the email of the user
+ * @param password the password (unhashed)
+ */
 export const signin = async (email: string, password: string) => {
 	// Verify that the user has the right email and password
 	const user = await db.user.findUnique({ where: { email } });
@@ -23,6 +34,7 @@ export const signin = async (email: string, password: string) => {
 	return user;
 };
 
+// Session secret
 const sessionSecret = process.env.SESSION_SECRET;
 if (!sessionSecret) {
 	throw new Error("SESSION_SECRET must be set");
@@ -30,7 +42,7 @@ if (!sessionSecret) {
 
 const storage = createCookieSessionStorage({
 	cookie: {
-		name: "RJ_session",
+		name: "BR_session",
 		secure: false,
 		secrets: [sessionSecret],
 		sameSite: "lax",
@@ -40,16 +52,29 @@ const storage = createCookieSessionStorage({
 	},
 });
 
+/**
+ * Returns the current user session
+ * @param request parameter from action/loader function
+ */
 async function getUserSession (request: Request) {
 	const session = await storage.getSession(request.headers.get("Cookie"))
 	return session;
 }
 
+/**
+ * Gets the current userId
+ * @param request parameter from action/loader function
+ */
 export async function getUserId(request: Request) {
 	const session = await getUserSession(request);
 	return session.get("userId");
 }
 
+/**
+ * Require a route to be authed
+ * @param request
+ * @param redirectTo
+ */
 export async function requireUserId(
 	request: Request,
 	redirectTo: string = new URL(request.url).pathname,

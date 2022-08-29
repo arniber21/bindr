@@ -1,8 +1,8 @@
 import { json, LoaderFunction } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
-import { getCourses } from "~/utils/db.server";
 import { getUser } from "~/utils/session.server";
 import { secondaryButtonClasses } from "~/utils/classes";
+import { getCourses } from "~/utils/assignments.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
 	const user = await getUser(request);

@@ -1,5 +1,5 @@
-export const formControlClasses = "border-2 border-slate-300 text-sm rounded-xl py-3 px-5 hover:bg-slate-200 hover:border-slate-500 selection:bg-slate-200 selection:border-slate-500";
-export const textAreaClasses = "border-2 border-slate-300 text-sm rounded-xl py-3 px-5 hover:bg-slate-200 hover:border-slate-500 selection:bg-slate-200 selection:border-slate-500";
+export const formControlClasses = "border-2 border-slate-300 text-sm rounded-xl py-3 px-5 hover:bg-slate-200 hover:border-slate-500 selection:bg-slate-400 selection:border-slate-500";
+export const textAreaClasses = "border-2 border-slate-300 text-sm rounded-xl py-3 px-5 hover:bg-slate-200 hover:border-slate-500 selection:bg-slate-400 selection:border-slate-500";
 export const primaryGradientButtonClasses = 'text-sm font-medium rounded-xl py-3 px-5 text-white border-2 hover:border-slate-500 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-500 hover:to-blue-500';
 export const secondaryGradientButtonClasses = 'text-sm font-medium rounded-xl py-3 px-5 text-white border-2 hover:border-slate-500 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-blue-500 hover:to-purple-500';
 export const primaryButtonClasses = primaryGradientButtonClasses;
