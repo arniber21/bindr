@@ -1,9 +1,8 @@
-import { ActionFunction, redirect } from "@remix-run/node";
+import type { ActionFunction } from '@remix-run/node';
+import { redirect } from "@remix-run/node";
 import { getUser } from "~/utils/session.server";
-import { primaryButtonClasses } from "~/utils/classes";
+import { formControlClasses, primaryButtonClasses } from "~/utils/classes";
 import { createCourse } from "~/utils/assignments.server";
-
-const formControlClasses = 'border-2 border-slate-300 text-sm rounded-lg py-3 px-5 hover:bg-slate-200 hover:border-slate-500 selection:bg-slate-400 selection:border-slate-500';
 
 export const action: ActionFunction = async ({ request }) => {
 	const formData = await request.formData();

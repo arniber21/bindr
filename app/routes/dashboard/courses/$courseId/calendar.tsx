@@ -1,15 +1,9 @@
-import { json, LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction } from '@remix-run/node'
+import type { FC } from "react";
 import { Link, useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/node";
 import { getAssignments } from "~/utils/assignments.server";
-
 const calendarGridElementClasses = "border-2 p-5 font-medium";
-
-type Assignment = {
-	id: number,
-	name: string,
-	description: string,
-	dueDate: string,
-}
 
 type LoaderData = {
 	assignments: any[]
@@ -22,6 +16,32 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 	const assignments = await getAssignments(Number.parseInt(courseId));
 	return json({ assignments });
 };
+
+const CalendarHeader: FC = () => {
+	return <>
+		<div className={calendarGridElementClasses}>
+			Sunday
+		</div>
+		<div className={calendarGridElementClasses}>
+			Monday
+		</div>
+		<div className={calendarGridElementClasses}>
+			Tuesday
+		</div>
+		<div className={calendarGridElementClasses}>
+			Wednesday
+		</div>
+		<div className={calendarGridElementClasses}>
+			Thursday
+		</div>
+		<div className={calendarGridElementClasses}>
+			Friday
+		</div>
+		<div className={calendarGridElementClasses}>
+			Saturday
+		</div>
+	</>;
+}
 
 export default function CalendarPage() {
 	const data = useLoaderData<LoaderData>();
@@ -50,27 +70,7 @@ export default function CalendarPage() {
 		<div>
 			<h1 className="text-lg mb-5">Calendar</h1>
 			<div className="grid grid-cols-7">
-				<div className={calendarGridElementClasses}>
-					Sunday
-				</div>
-				<div className={calendarGridElementClasses}>
-					Monday
-				</div>
-				<div className={calendarGridElementClasses}>
-					Tuesday
-				</div>
-				<div className={calendarGridElementClasses}>
-					Wednesday
-				</div>
-				<div className={calendarGridElementClasses}>
-					Thursday
-				</div>
-				<div className={calendarGridElementClasses}>
-					Friday
-				</div>
-				<div className={calendarGridElementClasses}>
-					Saturday
-				</div>
+				<CalendarHeader />
 				{daysArray.map((day) =>
 					<div className={calendarGridElementClasses} key={day}>
 						{day > 0 ? day <= daysInCurrentMonth ? day : day - 31 : day + 31}
